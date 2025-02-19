@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>간단한 챗봇</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #chat-container {
+            width: 400px;
+            height: 500px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+        }
+        .message {
+            padding: 5px;
+            margin: 5px;
+            border-radius: 5px;
+        }
+        .user {
+            background-color: #d1e7ff;
+            text-align: right;
+        }
+        .bot {
+            background-color: #e2e2e2;
+            text-align: left;
+        }
+        #input-container {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<h2>간단한 챗봇</h2>
+<div id="chat-container"></div>
+<div id="input-container">
+    <input type="text" id="user-input" placeholder="메시지를 입력하세요..." onkeypress="handleKeyPress(event)">
+    <button onclick="sendMessage()">전송</button>
+</div>
+
+<script src="chatbot.js"></script>
+</body>
+</html>
