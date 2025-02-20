@@ -16,6 +16,7 @@
     "express": "^4.21.2",
     "natural": "^8.0.1",
     "node-nlp": "^5.0.0-alpha.5",
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.9",
+    "openai": "^4.85.2"
   }
 }

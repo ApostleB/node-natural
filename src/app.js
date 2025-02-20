@@ -3,7 +3,12 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const {test} = require("./util/nlp.js");
+const connectDB = require('./config/db');
+
+
+
 require("dotenv").config();
+connectDB();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -13,7 +18,8 @@ app.use(cors()); // CORS 활성화
 app.use(bodyParser.json()); // JSON 데이터 파싱
 app.use(bodyParser.urlencoded({ extended: true })); // URL-encoded 데이터 파싱
 
-// 기본 라우트
+const apiRouter       = require('./routes/api');
+
 app.post("/", (req, res) => {
     const inputText = req.body.text;
 
@@ -25,10 +31,7 @@ app.post("/", (req, res) => {
 });
 
 // API 라우트 예제
-app.use("/api", (req, res) => {
-    console.log(req.body);
-    return res.send("test")
-});
+app.use("/api", apiRouter);
 
 // 서버 실행
 app.listen(PORT, () => {
