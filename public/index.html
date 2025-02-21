@@ -5,10 +5,28 @@
     <title>Title</title>
     <script src="index.js"></script>
 </head>
+<style>
+    body {
+        margin: 10%;
+    }
+    #content {
+        background-color: #ccc;
+        width: 50%;
+        height: 50%;
+        margin: 10%;
+        padding: 10px;
+    }
+</style>
 <body>
     <input type="text" name="" id="text1"> <button onclick="sendMsg()">button</button>
     <br>
     <br>
     <input type="text" name="" id="text2"> <button onclick="sendApi()">button</button>
+    <button onclick="checkList()">학습된 리스트 확인</button>
+
+    <button onclick="fineTune()">학습</button>
+    <div id="content">
+
+    </div>
 </body>
 </html>

@@ -1,6 +1,6 @@
 const General = require('../models/General');
 let { getAnswer } = require('../util/nlp.js');
-const { sendChatbot } = require("../util/chatBot");
+const { sendChatbot, tuneList, runFineTune, waitForFineTuneCompletion } = require("../util/chatBot");
 
 exports.getAll = async (req, res) => {
     try {
@@ -45,6 +45,8 @@ exports.askChat = async (req, res) => {
         let result = getAnswer(questionText, chatList);
         console.log("DB결과 : ", result)
 
+        result = null;
+
         if(!result){
             console.log("run gpt", questionText)
             result = await sendChatbot(questionText);
@@ -58,5 +60,21 @@ exports.askChat = async (req, res) => {
     } catch (err) {
         console.log(err)
         res.status(500).json({ error: '사용자 조회 실패' });
+    }
+};
+
+exports.tuneList = async (req, res) => {
+    const list = await tuneList();
+    const result = list.filter(item => item.status === "succeeded")
+    return res.json({ message: "success" })
+};
+
+exports.fineTune = async (req, res) => {
+    const tuneId = await runFineTune();
+    if(tuneId === "error"){
+        return res.send("error")
+    }else{
+        const result = await waitForFineTuneCompletion(tuneId);
+        return res.send(result);
     }
 };

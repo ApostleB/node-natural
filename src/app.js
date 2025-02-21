@@ -19,6 +19,7 @@ app.use(bodyParser.json()); // JSON 데이터 파싱
 app.use(bodyParser.urlencoded({ extended: true })); // URL-encoded 데이터 파싱
 
 const apiRouter       = require('./routes/api');
+const adminApiRouter       = require('./routes/adminApi');
 
 app.post("/", (req, res) => {
     const inputText = req.body.text;
@@ -32,6 +33,7 @@ app.post("/", (req, res) => {
 
 // API 라우트 예제
 app.use("/api", apiRouter);
+app.use("/admin/api", adminApiRouter);
 
 // 서버 실행
 app.listen(PORT, () => {
